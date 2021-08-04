@@ -1,5 +1,5 @@
 package br.com.alura.kaluraflixapi.mapper
 
-interface Mapper<T, U> {
-    fun map(t: T): U
+interface Mapper<M, T> {
+    fun map(m: M): T
 }

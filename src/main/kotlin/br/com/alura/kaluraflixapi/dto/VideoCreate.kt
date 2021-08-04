@@ -2,7 +2,6 @@ package br.com.alura.kaluraflixapi.dto
 
 import javax.validation.constraints.NotEmpty
 import javax.validation.constraints.NotNull
-import javax.validation.constraints.Pattern
 import javax.validation.constraints.Size
 
 data class VideoCreate(
@@ -19,7 +18,9 @@ data class VideoCreate(
 
         @field:NotNull(message = "URL não informada")
         @field:NotEmpty(message = "URL não informada")
-        val url: String = ""
+        val url: String = "",
+
+        val idCategoria: Long = 1
 ) {
 
 

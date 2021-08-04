@@ -1,9 +1,6 @@
 package br.com.alura.kaluraflixapi.model
 
-import javax.persistence.Entity
-import javax.persistence.GeneratedValue
-import javax.persistence.GenerationType
-import javax.persistence.Id
+import javax.persistence.*
 
 @Entity
 data class Video(
@@ -12,7 +9,10 @@ data class Video(
         val id: Long? = null,
         val titulo: String = "",
         val descricao: String = "",
-        val url: String = ""
+        val url: String = "",
+        @ManyToOne
+        @JoinColumn(name = "id_categoria", referencedColumnName = "id")
+        val categoria: Categoria? = null
 ) {
 
 

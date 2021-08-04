@@ -12,5 +12,7 @@ data class VideoUpdate(
         @field:Size(min = 5, max = 80, message = "A descrição deve ter entre 5 a 80 caracteres")
         val descricao: String? = null,
 
-        val url: String? = null
+        val url: String? = null,
+
+        val idCategoria: Long? = null
 )

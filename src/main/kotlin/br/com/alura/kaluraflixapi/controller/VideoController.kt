@@ -19,20 +19,25 @@ import javax.validation.Valid
 class VideoController(val videoService: VideoService) {
 
     @GetMapping
-    fun listAll(@PageableDefault(size = 100) paginacao: Pageable): Page<Video> {
+    fun listAll(@PageableDefault(size = 100) paginacao: Pageable, search: String? = null): Page<Video> {
+
+        if (search != null) {
+            return videoService.getByCategoria(search.uppercase(), paginacao)
+        }
+
         return videoService.listAll(paginacao)
     }
 
     @GetMapping("/{id}")
     fun getVideo(@PathVariable id: Long): Video? {
-        return videoService.getVideo(id)
+        return videoService.getById(id)
     }
 
     @PostMapping
     @Transactional
     fun create(@RequestBody @Valid video: VideoCreate,
                uriBuilder: UriComponentsBuilder): ResponseEntity<Video> {
-        val video = videoService.inserir(video)
+        val video = videoService.create(video)
         val uri = uriBuilder.path("/videos/${video.id}").build().toUri()
         return ResponseEntity.created(uri).body(video)
     }
@@ -42,7 +47,7 @@ class VideoController(val videoService: VideoService) {
     @Transactional
     fun update(@RequestBody @Valid video: VideoUpdate,
                uriBuilder: UriComponentsBuilder): ResponseEntity<Video> {
-        val video = videoService.atualizar(video)
+        val video = videoService.update(video)
         return ResponseEntity.ok(video)
     }
 
@@ -50,14 +55,16 @@ class VideoController(val videoService: VideoService) {
     @PatchMapping
     @Transactional
     fun patch(@RequestBody @Valid video: VideoUpdate,
-               uriBuilder: UriComponentsBuilder): ResponseEntity<Video> {
-        val video = videoService.atualizar(video)
+              uriBuilder: UriComponentsBuilder): ResponseEntity<Video> {
+        val video = videoService.update(video)
         return ResponseEntity.ok(video)
     }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    fun remover(@PathVariable id: Long){
-        videoService.remover(id)
+    fun remover(@PathVariable id: Long) {
+        videoService.remove(id)
     }
+
+
 }
