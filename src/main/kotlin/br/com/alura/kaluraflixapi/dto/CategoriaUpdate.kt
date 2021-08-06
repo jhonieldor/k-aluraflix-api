@@ -12,7 +12,7 @@ data class CategoriaUpdate(
         @field:Size(min = 5, max = 80, message = "O título deve ter entre 5 a 80 caracteres")
         val titulo: String? = null,
 
-        @field:Size(min = 2, max = 20, message = "O título deve ter entre 2 a 20 caracteres")
+        @field:Size(min = 2, max = 20, message = "A cor deve ter entre 2 a 20 caracteres")
         @field:Pattern(regexp = "^#([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$", message = "A cor deve representar um valor hexadecimal válido")
         val cor: String? = null,
 ) {
