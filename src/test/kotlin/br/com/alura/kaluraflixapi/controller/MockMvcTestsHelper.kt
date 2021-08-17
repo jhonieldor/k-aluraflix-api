@@ -3,12 +3,14 @@ package br.com.alura.kaluraflixapi.controller
 import org.springframework.http.HttpMethod
 import org.springframework.http.MediaType
 import org.springframework.stereotype.Component
+import org.springframework.test.context.ActiveProfiles
 import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers
 import java.net.URI
 
 @Component
+@ActiveProfiles("test")
 class MockMvcTestsHelper {
 
     fun postResponseStatusCreated201(mockMvc: MockMvc, endpoint: String, json: String): String {

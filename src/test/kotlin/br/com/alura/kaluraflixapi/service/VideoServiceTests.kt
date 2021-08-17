@@ -13,10 +13,12 @@ import org.springframework.boot.test.context.SpringBootTest
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 import org.springframework.data.domain.Pageable
+import org.springframework.test.context.ActiveProfiles
 import java.net.MalformedURLException
 
 @SpringBootTest
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
+@ActiveProfiles("test")
 class VideoServiceTests {
 
     @Autowired

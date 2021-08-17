@@ -2,12 +2,14 @@ package br.com.alura.kaluraflixapi
 
 import org.junit.jupiter.api.Test
 import org.springframework.boot.test.context.SpringBootTest
+import org.springframework.test.context.ActiveProfiles
 import java.awt.Color
 import java.net.URL
 import java.util.regex.Matcher
 import java.util.regex.Pattern
 
 @SpringBootTest
+@ActiveProfiles("test")
 class KAluraflixApiApplicationTests {
 
 	@Test
