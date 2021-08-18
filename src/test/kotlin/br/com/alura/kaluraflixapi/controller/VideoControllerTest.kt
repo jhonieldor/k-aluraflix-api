@@ -48,12 +48,6 @@ class VideoControllerTest {
     @AfterAll
     fun deleteVideoMustPass(){
         mockMvcHelper!!.deleteResponseNoContent204(mockMvc!!, "$endpoint/${video!!.id!!}")
-
-        val PI = 3.144
-        val POW = 300
-
-        val f = Math.sqrt(PI) * POW
-
     }
 
 
