@@ -13,7 +13,7 @@ import org.springframework.data.jpa.repository.JpaRepository
  * UPDATE-> generics for UpdateMappers
  * T -> generics for Entities mapped with database
  */
-open abstract class AbstractService<CREATE, UPDATE, T>(private val notFoundMessage: String,
+abstract class AbstractService<CREATE, UPDATE, T>(private val notFoundMessage: String,
                                              private val createMapper: Mapper<CREATE, T>,
                                              private val updateMapper: Mapper<UPDATE, T>,
                                              private val repository: JpaRepository<T, Long>) {
@@ -32,11 +32,11 @@ open abstract class AbstractService<CREATE, UPDATE, T>(private val notFoundMessa
 
     fun create(objectCreate: CREATE): T {
         val objectToSave: T = createMapper.map(objectCreate)
-        return repository.save(objectToSave)
+        return repository.save(objectToSave!!)
     }
 
     fun update(objectUpdate: UPDATE): T {
         val objectToSave: T = updateMapper.map(objectUpdate)
-        return repository.save(objectToSave)
+        return repository.save(objectToSave!!)
     }
 }

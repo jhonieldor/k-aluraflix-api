@@ -37,9 +37,9 @@ class VideoController(val videoService: VideoService) {
     @Transactional
     fun create(@RequestBody @Valid video: VideoCreate,
                uriBuilder: UriComponentsBuilder): ResponseEntity<Video> {
-        val video = videoService.create(video)
-        val uri = uriBuilder.path("/videos/${video.id}").build().toUri()
-        return ResponseEntity.created(uri).body(video)
+        val videoCreated = videoService.create(video)
+        val uri = uriBuilder.path("/videos/${videoCreated.id}").build().toUri()
+        return ResponseEntity.created(uri).body(videoCreated)
     }
 
 
@@ -47,8 +47,8 @@ class VideoController(val videoService: VideoService) {
     @Transactional
     fun update(@RequestBody @Valid video: VideoUpdate,
                uriBuilder: UriComponentsBuilder): ResponseEntity<Video> {
-        val video = videoService.update(video)
-        return ResponseEntity.ok(video)
+        val videoUpdated = videoService.update(video)
+        return ResponseEntity.ok(videoUpdated)
     }
 
 
@@ -56,8 +56,8 @@ class VideoController(val videoService: VideoService) {
     @Transactional
     fun patch(@RequestBody @Valid video: VideoUpdate,
               uriBuilder: UriComponentsBuilder): ResponseEntity<Video> {
-        val video = videoService.update(video)
-        return ResponseEntity.ok(video)
+        val videoUpdated = videoService.update(video)
+        return ResponseEntity.ok(videoUpdated)
     }
 
     @DeleteMapping("/{id}")

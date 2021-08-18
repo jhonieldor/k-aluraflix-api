@@ -10,7 +10,7 @@ class AgrupamentoVideosCategoria(
         val titulo: String = "",
         val cor: String = "",
 
-        @OneToMany
+        @OneToMany(fetch = FetchType.EAGER)
         @JoinColumn(name = "id_categoria")
         val videos: List<VideoCategoria> = ArrayList()
 

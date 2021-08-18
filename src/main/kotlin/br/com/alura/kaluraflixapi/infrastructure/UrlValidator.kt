@@ -7,9 +7,9 @@ import java.net.URL
 @Component
 class UrlValidator {
 
-    fun checkUrl(strUrl: String) {
+    fun checkUrl(strUrl: String): URL {
         try {
-            val url = URL(strUrl)
+            return URL(strUrl)
         } catch (e: MalformedURLException) {
             throw MalformedURLException("URL inválida")
         }

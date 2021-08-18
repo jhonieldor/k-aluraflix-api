@@ -27,9 +27,6 @@ class CategoriaRepositoryTests {
     @Autowired
     val agrupamentoVideosCategoriaRepository: AgrupamentoVideosCategoriaRepository? = null
 
-    @Autowired
-    val videoRepository: VideoRepository? = null
-
     var categoria: Categoria? = Categoria(id = 0, titulo = "CATEGORIA TESTE", cor = "#FFF")
 
     @BeforeAll
@@ -54,15 +51,15 @@ class CategoriaRepositoryTests {
         val id = categoria!!.id
 
         val categoriaDb = categoriaRepository?.findByIdOrNull(id)
-        println("categoriaDb: " + categoriaDb)
+        println("categoriaDb: $categoriaDb")
         assertNotNull(categoriaDb)
 
         val categoriaUpdate = Categoria(categoriaDb!!.id, "CATEGORIA ATUALIZADA", cor="#FFF5")
 
         assertNotEquals(categoriaUpdate, categoriaDb)
 
-        categoria = categoriaRepository?.save(categoriaUpdate!!)
-        assertEquals(categoriaDb!!.id, categoria!!.id)
+        categoria = categoriaRepository?.save(categoriaUpdate)
+        assertEquals(categoriaDb.id, categoria!!.id)
     }
 
 
@@ -73,7 +70,7 @@ class CategoriaRepositoryTests {
 
         println(agrupamentoPaginated!!.content.size)
 
-        agrupamentoPaginated!!.content.forEach { content ->
+        agrupamentoPaginated.content.forEach { content ->
             println("videos: " + content.videos.size)
         }
     }

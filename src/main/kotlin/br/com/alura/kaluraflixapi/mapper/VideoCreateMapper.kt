@@ -8,17 +8,22 @@ import br.com.alura.kaluraflixapi.repository.CategoriaRepository
 import org.springframework.stereotype.Component
 
 @Component
-class VideoCreateMapper(val urlValidator: UrlValidator,
-    val categoriaRepository: CategoriaRepository) : Mapper<VideoCreate, Video> {
-    override fun map(create: VideoCreate): Video {
+class VideoCreateMapper(
+    val urlValidator: UrlValidator,
+    val categoriaRepository: CategoriaRepository
+) : Mapper<VideoCreate, Video> {
+    override fun map(m: VideoCreate): Video {
 
-        urlValidator.checkUrl(create.url)
+        urlValidator.checkUrl(m.url)
 
-        val categoria = categoriaRepository.findById(create.idCategoria).orElseThrow { NotFoundException("Categoria do vídeo inexistente") }
+        val categoria = categoriaRepository.findById(m.idCategoria)
+            .orElseThrow { NotFoundException("Categoria do vídeo inexistente") }
 
-        return Video(titulo = create.titulo,
-                descricao = create.descricao,
-                url = create.url,
-                categoria = categoria)
+        return Video(
+            titulo = m.titulo,
+            descricao = m.descricao,
+            url = m.url,
+            categoria = categoria
+        )
     }
 }
