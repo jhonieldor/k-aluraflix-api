@@ -38,41 +38,43 @@ class CategoriaRepositoryTests {
         assertNotNull(categoria)
     }
 
-//    @AfterAll
-//    fun removeCategoriaMustPass(){
-//        val id = categoria!!.id
-//
-//        categoriaRepository?.deleteById(id!!)
-//
-//        val categoria = categoriaRepository?.findByIdOrNull(id!!)
-//
-//        assertNull(categoria)
-//    }
-//
-//    @Test
-//    fun updateCategoriaMustPass(){
-//        val categoriaDb = categoriaRepository?.findById(categoria!!.id!!)?.orElseThrow()
-//        println("categoriaDb: " + categoriaDb)
-//        assertNotNull(categoriaDb)
-//
-//        val categoriaUpdate = Categoria(categoriaDb!!.id, "CATEGORIA ATUALIZADA", cor="#FFF5")
-//
-//        assertNotEquals(categoriaUpdate, categoriaDb)
-//
-//        categoria = categoriaRepository?.save(categoriaUpdate!!)
-//        assertEquals(categoriaDb!!.id, categoria!!.id)
-//    }
-//
-//
-//
-//    @Test
-//    fun getAgrupamentosVideosCategorias(){
-//        val agrupamentoPaginated = agrupamentoVideosCategoriaRepository?.findAll(paginacao)
-//
-//        println(agrupamentoPaginated!!.content.size)
-//
-//        agrupamentoPaginated!!.content.forEach { content ->
-//            println("videos: " + content.videos.size)
-//        }
-//    }
+    @AfterAll
+    fun removeCategoriaMustPass(){
+        val id = categoria!!.id
+
+        categoriaRepository?.deleteById(id!!)
+
+        val categoria = categoriaRepository?.findByIdOrNull(id!!)
+
+        assertNull(categoria)
+    }
+
+    @Test
+    fun updateCategoriaMustPass(){
+        val id = categoria!!.id
+
+        val categoriaDb = categoriaRepository?.findByIdOrNull(id)
+        println("categoriaDb: " + categoriaDb)
+        assertNotNull(categoriaDb)
+
+        val categoriaUpdate = Categoria(categoriaDb!!.id, "CATEGORIA ATUALIZADA", cor="#FFF5")
+
+        assertNotEquals(categoriaUpdate, categoriaDb)
+
+        categoria = categoriaRepository?.save(categoriaUpdate!!)
+        assertEquals(categoriaDb!!.id, categoria!!.id)
+    }
+
+
+
+    @Test
+    fun getAgrupamentosVideosCategorias(){
+        val agrupamentoPaginated = agrupamentoVideosCategoriaRepository?.findAll(paginacao)
+
+        println(agrupamentoPaginated!!.content.size)
+
+        agrupamentoPaginated!!.content.forEach { content ->
+            println("videos: " + content.videos.size)
+        }
+    }
 }
