@@ -2,7 +2,7 @@ package br.com.alura.kaluraflixapi.mapper
 
 import br.com.alura.kaluraflixapi.dto.VideoUpdate
 import br.com.alura.kaluraflixapi.exception.NotFoundException
-import br.com.alura.kaluraflixapi.infrastructure.UrlValidator
+import br.com.alura.kaluraflixapi.infrastructure.validators.UrlValidator
 import br.com.alura.kaluraflixapi.model.Categoria
 import br.com.alura.kaluraflixapi.model.Video
 import br.com.alura.kaluraflixapi.repository.CategoriaRepository
@@ -12,7 +12,8 @@ import org.springframework.stereotype.Component
 @Component
 class VideoUpdateMapper(private val videoRepository: VideoRepository,
                         private val categoriaRepository: CategoriaRepository,
-                        private val urlValidator: UrlValidator) : Mapper<VideoUpdate, Video> {
+                        private val urlValidator: UrlValidator
+) : Mapper<VideoUpdate, Video> {
     override fun map(m: VideoUpdate): Video {
         val dbVideo = videoRepository.findById(m.id!!).orElseThrow { throw NotFoundException("Vídeo não encontrado") }
 

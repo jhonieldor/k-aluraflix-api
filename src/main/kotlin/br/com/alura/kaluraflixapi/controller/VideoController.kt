@@ -28,6 +28,16 @@ class VideoController(val videoService: VideoService) {
         return videoService.listAll(paginacao)
     }
 
+    @GetMapping("/free")
+    fun getListFree(@PageableDefault(size = 10) paginacao: Pageable, search: String? = null): Page<Video> {
+
+        if (search != null) {
+            return videoService.getByCategoria(search.uppercase(), paginacao)
+        }
+
+        return videoService.listAll(paginacao)
+    }
+
     @GetMapping("/{id}")
     fun getVideo(@PathVariable id: Long): Video? {
         return videoService.getById(id)

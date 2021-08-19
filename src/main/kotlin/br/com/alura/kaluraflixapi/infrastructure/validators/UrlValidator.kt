@@ -1,4 +1,4 @@
-package br.com.alura.kaluraflixapi.infrastructure
+package br.com.alura.kaluraflixapi.infrastructure.validators
 
 import org.springframework.stereotype.Component
 import java.net.MalformedURLException

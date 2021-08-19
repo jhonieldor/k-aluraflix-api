@@ -2,7 +2,7 @@ package br.com.alura.kaluraflixapi.mapper
 
 import br.com.alura.kaluraflixapi.dto.VideoCreate
 import br.com.alura.kaluraflixapi.exception.NotFoundException
-import br.com.alura.kaluraflixapi.infrastructure.UrlValidator
+import br.com.alura.kaluraflixapi.infrastructure.validators.UrlValidator
 import br.com.alura.kaluraflixapi.model.Video
 import br.com.alura.kaluraflixapi.repository.CategoriaRepository
 import org.springframework.stereotype.Component
